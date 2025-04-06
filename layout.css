@@ -37,6 +37,7 @@ a {
   font-weight: 600;
   color: #007aff;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .nav-actions {
@@ -54,10 +55,11 @@ a {
   border-radius: 8px;
   font-weight: 600;
   transition: background 0.2s ease;
-  white-space: nowrap;
-  width: auto;
   border: none;
   cursor: pointer;
+  white-space: nowrap;
+  width: auto;
+  flex-shrink: 0;
 }
 
 .btn-primary:hover {
@@ -73,6 +75,8 @@ a {
   color: #007aff;
   font-weight: 500;
   font-size: 0.95rem;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .footer {
@@ -81,4 +85,17 @@ a {
   font-size: 0.9rem;
   text-align: center;
   padding: 30px 0;
+}
+
+@media (max-width: 500px) {
+  .nav-inner {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-actions {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }
