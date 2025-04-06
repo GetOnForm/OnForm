@@ -1,3 +1,4 @@
+/* Base reset & typography */
 body {
   font-family: 'Inter', sans-serif;
   margin: 0;
@@ -7,41 +8,56 @@ body {
   line-height: 1.6;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Container */
 .container {
-  max-width: 960px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 40px 20px;
 }
 
-.site-header {
+/* Navigation */
+.nav {
   background: #ffffff;
-  text-align: center;
-  padding: 80px 20px 60px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-.site-header h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
-}
-
-.site-header p {
-  font-size: 1.25rem;
-  color: #555;
-  margin-bottom: 30px;
-}
-
-.cta-buttons {
+.nav-content {
   display: flex;
-  gap: 15px;
-  justify-content: center;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
 }
 
+.logo {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #007aff;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-links a.btn-link {
+  color: #007aff;
+  font-weight: 500;
+}
+
+/* Buttons */
 .btn {
   padding: 12px 24px;
-  text-decoration: none;
-  font-weight: 600;
   border-radius: 8px;
+  font-weight: 600;
   transition: background 0.2s;
 }
 
@@ -54,24 +70,42 @@ body {
   background: #005bb5;
 }
 
-.btn.secondary {
-  border: 2px solid #007aff;
-  color: #007aff;
-}
-
-.btn.secondary:hover {
-  background: #007aff;
-  color: white;
+.btn.small {
+  padding: 8px 16px;
+  font-size: 0.9rem;
 }
 
 .btn.large {
+  padding: 16px 32px;
   font-size: 1.2rem;
-  padding: 14px 28px;
 }
 
+/* Hero */
+.site-header {
+  text-align: center;
+  padding: 120px 20px 80px;
+  background: #ffffff;
+}
+
+.site-header h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.site-header p {
+  font-size: 1.25rem;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+/* Features */
 .features {
   background: #fff;
   text-align: center;
+}
+
+.features h2 {
+  margin-bottom: 20px;
 }
 
 .feature-grid {
@@ -84,15 +118,16 @@ body {
 .feature-card {
   background: #f0f0f5;
   border-radius: 16px;
-  padding: 20px;
+  padding: 24px;
   text-align: left;
 }
 
 .feature-card h3 {
-  margin-top: 0;
   color: #007aff;
+  margin-top: 0;
 }
 
+/* Psychology section */
 .psychology {
   background: #e9f1ff;
   text-align: center;
@@ -113,6 +148,7 @@ body {
   font-weight: 500;
 }
 
+/* How it works */
 .how-it-works {
   background: #fff;
   text-align: center;
@@ -126,17 +162,19 @@ body {
   text-align: left;
 }
 
+/* Final CTA */
 .cta-final {
   background: #007aff;
   color: white;
   text-align: center;
-  padding: 60px 20px;
+  padding: 80px 20px;
 }
 
 .cta-final h2 {
   margin-bottom: 20px;
 }
 
+/* Footer */
 .site-footer {
   background: #222;
   color: #bbb;
