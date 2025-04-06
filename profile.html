@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Profile – OnForm</title>
+<link rel="stylesheet" href="layout.css" />
+<link rel="stylesheet" href="profile.css" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+<nav class="navbar">
+  <div class="container nav-inner">
+    <div class="brand">OnForm</div>
+    <div class="nav-actions">
+      <a href="dashboard.html" class="btn-link">Dashboard</a>
+      <a href="groups.html" class="btn-link">Groups</a>
+      <a href="signup.html" class="btn-primary small">Log Out</a>
+    </div>
+  </div>
+</nav>
+<main class="profile">
+  <section class="profile-info">
+    <h2>Your Profile</h2>
+    <div id="profile-details"></div>
+  </section>
+  <section class="performance-details">
+    <h2>Performance Pass Status</h2>
+    <div id="performance-details"></div>
+  </section>
+</main>
+<footer class="footer">
+  <div class="container">
+    <p>&copy; 2025 OnForm. All rights reserved.</p>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="profile.js"></script>
+</body>
+</html>
