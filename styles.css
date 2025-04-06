@@ -4,38 +4,143 @@ body {
   padding: 0;
   background: #f5f5f7;
   color: #111;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.site-header {
+  background: #ffffff;
   text-align: center;
+  padding: 80px 20px 60px;
 }
 
-header {
-  max-width: 600px;
-  padding: 20px;
-}
-
-h1 {
+.site-header h1 {
   font-size: 3rem;
   margin-bottom: 10px;
 }
 
-p {
-  font-size: 1.2rem;
+.site-header p {
+  font-size: 1.25rem;
+  color: #555;
   margin-bottom: 30px;
 }
 
-.cta-button {
-  background: #007aff;
-  color: white;
-  text-decoration: none;
+.cta-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
   padding: 12px 24px;
-  border-radius: 8px;
+  text-decoration: none;
   font-weight: 600;
+  border-radius: 8px;
   transition: background 0.2s;
 }
 
-.cta-button:hover {
+.btn.primary {
+  background: #007aff;
+  color: white;
+}
+
+.btn.primary:hover {
   background: #005bb5;
+}
+
+.btn.secondary {
+  border: 2px solid #007aff;
+  color: #007aff;
+}
+
+.btn.secondary:hover {
+  background: #007aff;
+  color: white;
+}
+
+.btn.large {
+  font-size: 1.2rem;
+  padding: 14px 28px;
+}
+
+.features {
+  background: #fff;
+  text-align: center;
+}
+
+.feature-grid {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-top: 30px;
+}
+
+.feature-card {
+  background: #f0f0f5;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: left;
+}
+
+.feature-card h3 {
+  margin-top: 0;
+  color: #007aff;
+}
+
+.psychology {
+  background: #e9f1ff;
+  text-align: center;
+}
+
+.psychology ul {
+  list-style: none;
+  padding: 0;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.psychology li {
+  background: #ffffff;
+  border-radius: 8px;
+  margin: 10px 0;
+  padding: 12px 20px;
+  font-weight: 500;
+}
+
+.how-it-works {
+  background: #fff;
+  text-align: center;
+}
+
+.how-it-works ol {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: decimal inside;
+  text-align: left;
+}
+
+.cta-final {
+  background: #007aff;
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.cta-final h2 {
+  margin-bottom: 20px;
+}
+
+.site-footer {
+  background: #222;
+  color: #bbb;
+  text-align: center;
+  padding: 30px 20px;
+  font-size: 0.9rem;
 }
