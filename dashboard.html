@@ -4,41 +4,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>OnForm Dashboard</title>
+  <link rel="stylesheet" href="layout.css" />
   <link rel="stylesheet" href="dashboard.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
+
   <!-- Header -->
   <nav class="navbar">
     <div class="container nav-inner">
       <div class="brand">OnForm</div>
-      <!-- No login/sign-up buttons here -->
     </div>
   </nav>
 
   <!-- Main Dashboard Content -->
   <main class="dashboard">
     <section class="welcome">
-      <h1>Welcome, John Doe</h1>
-      <p>Your current streak: <span class="streak">12 days</span></p>
+      <h1 id="welcome-name">Welcome</h1>
+      <p>Your current streak: <span class="streak" id="streak-count">...</span></p>
     </section>
 
     <section class="tasks">
       <h2>Today's Tasks</h2>
-      <ul>
-        <li class="task complete">
-          Study 30 minutes <span class="status">✔</span>
-        </li>
-        <li class="task complete">
-          Attend lecture <span class="status">✔</span>
-        </li>
-        <li class="task pending">
-          Review notes <span class="status">○</span>
-        </li>
-        <li class="task pending">
-          Complete assignment <span class="status">○</span>
-        </li>
-      </ul>
+      <ul></ul>
     </section>
 
     <section class="streak-tracker">
@@ -68,5 +56,8 @@
       <p>&copy; 2025 OnForm. All rights reserved.</p>
     </div>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="dashboard.js"></script>
 </body>
 </html>
