@@ -4,10 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>OnForm – Sign Up / Log In</title>
+  <link rel="stylesheet" href="layout.css" />
   <link rel="stylesheet" href="signup.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
+
+  <nav class="navbar">
+    <div class="nav-flex">
+      <div class="brand">OnForm</div>
+      <div class="nav-actions">
+        <a href="signup.html" class="btn-link">Log In</a>
+        <a href="signup.html" class="btn-primary small">Sign Up</a>
+      </div>
+    </div>
+  </nav>
 
   <div class="auth-container">
     <div class="auth-card">
@@ -17,7 +28,7 @@
         <input type="email" placeholder="Email" required />
 
         <div class="password-wrapper">
-          <input type="password" placeholder="Password" id="password" required />
+          <input type="password" placeholder="Password" required />
           <span class="toggle-password">&#128065;</span>
         </div>
 
@@ -37,6 +48,10 @@
       </p>
     </div>
   </div>
+
+  <footer class="footer">
+    <p>&copy; 2025 OnForm. All rights reserved.</p>
+  </footer>
 
 </body>
 </html>
