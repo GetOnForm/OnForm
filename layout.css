@@ -11,21 +11,22 @@ a {
   color: inherit;
 }
 
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .navbar {
   background: white;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   position: sticky;
   top: 0;
   z-index: 1000;
-  padding: 20px;
-}
-
-.nav-flex {
-  max-width: 1000px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 20px 0;
 }
 
 .brand {
@@ -67,7 +68,7 @@ a {
 .footer {
   background: #111;
   color: #bbb;
-  text-align: center;
-  padding: 30px 20px;
   font-size: 0.9rem;
+  text-align: center;
+  padding: 30px 0;
 }
