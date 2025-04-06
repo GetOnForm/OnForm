@@ -1,91 +1,35 @@
-/* General Styles */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', sans-serif;
-  background: #f5f5f7;
-  color: #111;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-/* Container for header and footer */
-.container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* Header / Navbar */
-.navbar {
-  background: white;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  padding: 20px 0;
-}
-
-.nav-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: nowrap;
-}
-
-.brand {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #007aff;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-/* Dashboard Main Content */
 .dashboard {
   padding: 40px 20px;
   max-width: 1000px;
   margin: 0 auto;
 }
-
 .welcome {
   text-align: center;
   margin-bottom: 40px;
 }
-
 .welcome h1 {
   font-size: 2rem;
   margin-bottom: 10px;
 }
-
 .welcome p {
   font-size: 1.2rem;
 }
-
 .streak {
   font-weight: bold;
   color: #e53935;
 }
-
-/* Tasks Section */
 .tasks {
   margin-bottom: 40px;
 }
-
 .tasks h2 {
   font-size: 1.5rem;
   margin-bottom: 20px;
   text-align: center;
 }
-
 .tasks ul {
   list-style: none;
   padding: 0;
 }
-
 .task {
   background: #fff;
   border-radius: 8px;
@@ -96,30 +40,23 @@ a {
   align-items: center;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
-
 .task.complete {
   border-left: 5px solid #007aff;
 }
-
 .task.pending {
   border-left: 5px solid #ccc;
 }
-
 .status {
   font-size: 1.2rem;
 }
-
-/* Streak Tracker Section */
 .streak-tracker {
   margin-bottom: 40px;
   text-align: center;
 }
-
 .streak-tracker h2 {
   font-size: 1.5rem;
   margin-bottom: 10px;
 }
-
 .progress-bar {
   background: #e0e0e0;
   border-radius: 8px;
@@ -128,43 +65,31 @@ a {
   max-width: 600px;
   margin: 0 auto 10px;
 }
-
 .progress {
   background: #007aff;
   height: 100%;
   width: 0;
   transition: width 0.3s ease;
 }
-
-/* Rewards Section */
 .rewards {
   margin-bottom: 40px;
   text-align: center;
 }
-
-.rewards h2 {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
+.reward-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
 }
-
 .reward-card {
   background: #fff;
   border-radius: 8px;
   padding: 16px;
-  margin: 0 auto 10px;
-  max-width: 400px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
-
 .reward-card.locked {
   opacity: 0.6;
 }
-
-/* Footer */
-.footer {
-  background: #111;
-  color: #bbb;
-  font-size: 0.9rem;
+.performance-pass {
+  margin-bottom: 40px;
   text-align: center;
-  padding: 30px 20px;
 }
