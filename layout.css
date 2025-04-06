@@ -5,33 +5,28 @@ body {
   color: #111;
   background: #f5f5f7;
 }
-
 a {
   text-decoration: none;
   color: inherit;
 }
-
 .container {
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 20px;
 }
-
 .nav-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 .navbar {
   background: white;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   position: sticky;
   top: 0;
   z-index: 1000;
   padding: 20px 0;
 }
-
 .brand {
   font-size: 1.5rem;
   font-weight: 600;
@@ -39,7 +34,6 @@ a {
   white-space: nowrap;
   flex-shrink: 0;
 }
-
 .nav-actions {
   display: flex;
   gap: 12px;
@@ -47,7 +41,6 @@ a {
   flex-wrap: nowrap;
   white-space: nowrap;
 }
-
 .btn-primary {
   background: #007aff;
   color: white;
@@ -58,27 +51,20 @@ a {
   border: none;
   cursor: pointer;
   white-space: nowrap;
-  width: auto;
-  flex-shrink: 0;
 }
-
 .btn-primary:hover {
   background: #005bb5;
 }
-
 .btn-primary.small {
   font-size: 0.9rem;
   padding: 8px 16px;
 }
-
 .btn-link {
   color: #007aff;
   font-weight: 500;
   font-size: 0.95rem;
-  flex-shrink: 0;
   white-space: nowrap;
 }
-
 .footer {
   background: #111;
   color: #bbb;
@@ -86,13 +72,11 @@ a {
   text-align: center;
   padding: 30px 0;
 }
-
 @media (max-width: 500px) {
   .nav-inner {
     flex-direction: column;
     gap: 10px;
   }
-
   .nav-actions {
     flex-direction: row;
     justify-content: center;
