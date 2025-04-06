@@ -36,13 +36,15 @@ a {
   font-size: 1.5rem;
   font-weight: 600;
   color: #007aff;
+  white-space: nowrap;
 }
 
 .nav-actions {
   display: flex;
-  gap: 16px;
+  gap: 12px;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .btn-primary {
@@ -53,21 +55,24 @@ a {
   font-weight: 600;
   transition: background 0.2s ease;
   white-space: nowrap;
+  width: auto;
+  border: none;
+  cursor: pointer;
 }
 
 .btn-primary:hover {
   background: #005bb5;
 }
 
+.btn-primary.small {
+  font-size: 0.9rem;
+  padding: 8px 16px;
+}
+
 .btn-link {
   color: #007aff;
   font-weight: 500;
   font-size: 0.95rem;
-}
-
-.small {
-  font-size: 0.9rem;
-  padding: 8px 16px;
 }
 
 .footer {
