@@ -1,7 +1,8 @@
 .auth-container {
-  width: 100%;
-  max-width: 400px;
-  margin: 60px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 160px);
   padding: 20px;
 }
 
@@ -10,6 +11,8 @@
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   padding: 40px 30px;
+  width: 100%;
+  max-width: 400px;
   text-align: center;
 }
 
@@ -56,4 +59,16 @@ form input {
 
 .btn-primary {
   width: 100%;
+}
+
+.toggle-text {
+  margin-top: 20px;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.toggle-text a {
+  color: #007aff;
+  text-decoration: underline;
+  cursor: pointer;
 }
