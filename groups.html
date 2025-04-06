@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Groups – OnForm</title>
+<link rel="stylesheet" href="layout.css" />
+<link rel="stylesheet" href="groups.css" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+<nav class="navbar">
+  <div class="container nav-inner">
+    <div class="brand">OnForm</div>
+    <div class="nav-actions">
+      <a href="dashboard.html" class="btn-link">Dashboard</a>
+      <a href="profile.html" class="btn-link">Profile</a>
+      <a href="signup.html" class="btn-primary small">Log Out</a>
+    </div>
+  </div>
+</nav>
+<main class="groups">
+  <section class="group-list">
+    <h2>Your Study Groups</h2>
+    <div id="groups-container"></div>
+  </section>
+  <section class="group-create">
+    <h2>Create New Group</h2>
+    <form id="group-form">
+      <input type="text" id="group-name" placeholder="Group Name" required />
+      <textarea id="group-description" placeholder="Group Description" required></textarea>
+      <button type="submit" class="btn-primary">Create Group</button>
+    </form>
+  </section>
+</main>
+<footer class="footer">
+  <div class="container">
+    <p>&copy; 2025 OnForm. All rights reserved.</p>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="groups.js"></script>
+</body>
+</html>
