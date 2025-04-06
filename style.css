@@ -1,4 +1,9 @@
 /* Base */
+
+body {
+  background: pink;
+}
+
 body {
   margin: 0;
   padding: 0;
