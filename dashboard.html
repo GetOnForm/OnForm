@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OnForm Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Header -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <div class="brand">OnForm</div>
+      <!-- No login/sign-up buttons here -->
+    </div>
+  </nav>
+
+  <!-- Main Dashboard Content -->
+  <main class="dashboard">
+    <section class="welcome">
+      <h1>Welcome, John Doe</h1>
+      <p>Your current streak: <span class="streak">12 days</span></p>
+    </section>
+
+    <section class="tasks">
+      <h2>Today's Tasks</h2>
+      <ul>
+        <li class="task complete">
+          Study 30 minutes <span class="status">✔</span>
+        </li>
+        <li class="task complete">
+          Attend lecture <span class="status">✔</span>
+        </li>
+        <li class="task pending">
+          Review notes <span class="status">○</span>
+        </li>
+        <li class="task pending">
+          Complete assignment <span class="status">○</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="streak-tracker">
+      <h2>Streak Tracker</h2>
+      <div class="progress-bar">
+        <div class="progress" style="width: 70%;"></div>
+      </div>
+      <p>Progress: 5 out of 7 tasks complete</p>
+    </section>
+
+    <section class="rewards">
+      <h2>Rewards</h2>
+      <div class="reward-card">
+        <h3>Bronze Tier</h3>
+        <p>Unlocked: Enjoy 5% discount on textbooks</p>
+      </div>
+      <div class="reward-card locked">
+        <h3>Silver Tier</h3>
+        <p>Unlock in 2 days to get 10% discount</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 OnForm. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
