@@ -4,37 +4,36 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>OnForm – Sign Up / Log In</title>
-  <link rel="stylesheet" href="styles/style.css" />
+  <link rel="stylesheet" href="styles/signup.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  <script defer src="scripts/auth.js"></script>
 </head>
 <body>
 
   <div class="auth-container">
-    <div class="auth-card" id="auth-card">
-      <h2 id="auth-title">Sign Up</h2>
+    <div class="auth-card">
+      <h2>Sign Up</h2>
 
-      <form id="auth-form">
-        <input type="email" id="email" placeholder="Email" required />
-        
+      <form>
+        <input type="email" placeholder="Email" required />
+
         <div class="password-wrapper">
-          <input type="password" id="password" placeholder="Password" required />
-          <span class="toggle-password" id="toggle-password">&#128065;</span>
+          <input type="password" placeholder="Password" id="password" required />
+          <span class="toggle-password">&#128065;</span>
         </div>
 
-        <ul class="password-checks" id="password-checks">
-          <li id="length-check">❌ At least 8 characters</li>
-          <li id="uppercase-check">❌ 1 uppercase letter</li>
-          <li id="lowercase-check">❌ 1 lowercase letter</li>
-          <li id="number-check">❌ 1 number</li>
-          <li id="symbol-check">❌ 1 symbol</li>
+        <ul class="password-checks">
+          <li>❌ At least 8 characters</li>
+          <li>❌ 1 uppercase letter</li>
+          <li>❌ 1 lowercase letter</li>
+          <li>❌ 1 number</li>
+          <li>❌ 1 symbol</li>
         </ul>
 
-        <button type="submit" class="btn-primary full">Create Account</button>
+        <button type="submit" class="btn-primary">Create Account</button>
       </form>
 
       <p class="toggle-text">
-        Already have an account? <a href="#" id="toggle-view">Log in</a>
+        Already have an account? <a href="#">Log in</a>
       </p>
     </div>
   </div>
