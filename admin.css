@@ -1,3 +1,5 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
+
 .admin-dashboard {
   padding: 20px;
   max-width: 1000px;
@@ -19,10 +21,22 @@
 }
 .admin-tools label {
   font-weight: 600;
+  margin-right: 6px;
 }
 .admin-tools input {
   padding: 8px;
   margin-bottom: 8px;
   border: 1px solid #ccc;
   border-radius: 6px;
+}
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-icon i {
+  transition: transform 0.2s ease;
+}
+.btn-icon:hover i {
+  transform: scale(1.2);
 }
