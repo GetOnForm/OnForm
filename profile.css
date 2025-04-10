@@ -1,8 +1,15 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
+
 .profile {
   padding: 40px 20px;
   max-width: 800px;
   margin: 0 auto;
   text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 .profile-info, .account-details {
   margin-bottom: 40px;
@@ -10,6 +17,10 @@
 .profile-info h2, .account-details h2 {
   font-size: 1.8rem;
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
 }
 #profile-details, #account-details-container {
   background: #fff;
@@ -17,6 +28,8 @@
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   text-align: left;
+  margin: 0 auto;
+  max-width: 400px;
 }
 .profile-field {
   margin-bottom: 10px;
@@ -26,13 +39,25 @@
   margin-bottom: 4px;
   font-weight: 600;
 }
-.profile-field input {
+.profile-field input[type="text"],
+.profile-field input[type="checkbox"] {
   width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 1rem;
+  box-sizing: border-box;
+}
+.profile-field input[type="checkbox"] {
+  width: auto;
+  margin-right: 6px;
 }
 .profile-button {
   margin-top: 20px;
+  text-align: center;
+}
+.profile-button button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
