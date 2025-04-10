@@ -1,11 +1,19 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
+
 .hero {
-  background: white;
+  background: linear-gradient(to bottom right, #ffffff, #ebefff);
   text-align: center;
   padding: 100px 20px 60px;
+  animation: fadeIn 0.5s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 .hero-title {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   margin-bottom: 16px;
+  color: #007aff;
 }
 .hero-subtitle {
   font-size: 1.2rem;
@@ -40,4 +48,7 @@
 .feature-box h3 {
   margin-top: 0;
   color: #007aff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
