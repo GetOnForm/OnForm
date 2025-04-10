@@ -10,20 +10,20 @@
 <body>
 <nav class="navbar">
   <div class="container nav-inner">
-    <div class="brand">OnForm</div>
+    <div class="brand"><i class="fas fa-tasks"></i> OnForm</div>
     <div class="nav-actions">
-      <a href="dashboard.html" class="btn-link">Dashboard</a>
-      <a href="groups.html" class="btn-link">Groups</a>
-      <a href="friends.html" class="btn-link">Friends</a>
-      <a href="profile.html" class="btn-link">Profile</a>
-      <a href="signup.html" class="btn-primary small">Log Out</a>
+      <a href="dashboard.html" class="btn-link"><i class="fas fa-home"></i>Dashboard</a>
+      <a href="groups.html" class="btn-link"><i class="fas fa-users"></i>Groups</a>
+      <a href="friends.html" class="btn-link"><i class="fas fa-user-friends"></i>Friends</a>
+      <a href="profile.html" class="btn-link"><i class="fas fa-user"></i>Profile</a>
+      <a href="signup.html" class="btn-primary small"><i class="fas fa-sign-out-alt"></i>Log Out</a>
     </div>
   </div>
 </nav>
 
 <main class="tasks-page">
   <section class="task-create">
-    <h2>Create a Task</h2>
+    <h2><i class="fas fa-plus-square"></i> Create a Task</h2>
     <div>
       <input type="text" id="task-title" placeholder="Task Title" />
       <select id="task-frequency">
@@ -31,25 +31,28 @@
         <option value="weekly">Weekly</option>
         <option value="once">Once</option>
       </select>
+      <br/>
       <label><input type="checkbox" id="task-mustdo" /> Must Do? (affects streak)</label>
       <br/>
       <label>Start Date: <input type="date" id="task-start" /></label>
       <label>End Date: <input type="date" id="task-end" /></label>
       <br/>
-      <label>Hours Req (if any): <input type="number" id="task-hours" /></label>
-      <label>Times/Week: <input type="number" id="task-times" value="0" /></label>
+      <label>Hours Req: <input type="number" id="task-hours" style="width:60px;" /></label>
+      <label>Times/Week: <input type="number" id="task-times" value="0" style="width:60px;" /></label>
       <br/>
-      <button id="create-task-btn">Create Task</button>
+      <button id="create-task-btn" class="btn-primary btn-icon">
+        <i class="fas fa-save"></i>Create Task
+      </button>
     </div>
   </section>
 
   <section class="task-list">
-    <h2>Today’s Tasks</h2>
+    <h2><i class="fas fa-calendar-day"></i> Today’s Tasks</h2>
     <div id="today-tasks"></div>
   </section>
 
   <section class="task-list">
-    <h2>This Week’s Tasks</h2>
+    <h2><i class="fas fa-calendar-week"></i> This Week’s Tasks</h2>
     <div id="week-tasks"></div>
   </section>
 </main>
@@ -59,7 +62,6 @@
     <p>&copy; 2025 OnForm. All rights reserved.</p>
   </div>
 </footer>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 <script src="tasks.js"></script>
 </body>
