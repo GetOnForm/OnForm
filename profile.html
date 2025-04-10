@@ -6,36 +6,33 @@
   <title>Profile</title>
   <link rel="stylesheet" href="layout.css" />
   <link rel="stylesheet" href="profile.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
 <nav class="navbar">
   <div class="container nav-inner">
-    <div class="brand">OnForm</div>
+    <div class="brand"><i class="fas fa-user"></i> OnForm</div>
     <div class="nav-actions">
-      <a href="dashboard.html" class="btn-link">Dashboard</a>
-      <a href="groups.html" class="btn-link">Groups</a>
-      <a href="friends.html" class="btn-link">Friends</a>
-      <a href="tasks.html" class="btn-link">Tasks</a>
-      <a href="signup.html" class="btn-primary small">Log Out</a>
+      <a href="dashboard.html" class="btn-link"><i class="fas fa-home"></i>Dashboard</a>
+      <a href="groups.html" class="btn-link"><i class="fas fa-users"></i>Groups</a>
+      <a href="friends.html" class="btn-link"><i class="fas fa-user-friends"></i>Friends</a>
+      <a href="tasks.html" class="btn-link"><i class="fas fa-tasks"></i>Tasks</a>
+      <a href="signup.html" class="btn-primary small"><i class="fas fa-sign-out-alt"></i>Log Out</a>
     </div>
   </div>
 </nav>
-
 <main class="profile">
   <section class="profile-info">
-    <h2>Your Profile</h2>
+    <h2><i class="fas fa-id-card"></i> Your Profile</h2>
     <div id="profile-details">
       <p id="profile-name"></p>
       <p id="profile-email"></p>
       <p id="profile-username"></p>
-      <p id="profile-phone"></p>
       <p>Joined: <span id="profile-joined"></span></p>
     </div>
   </section>
 
   <section class="account-details">
-    <h2>Account Settings</h2>
+    <h2><i class="fas fa-cog"></i> Account Settings</h2>
     <div id="account-details-container">
       <div class="profile-field">
         <label>Full Name</label>
@@ -46,14 +43,10 @@
         <input type="text" id="edit-username" />
       </div>
       <div class="profile-field">
-        <label>Phone Number</label>
-        <input type="text" id="edit-phone" />
-      </div>
-      <div class="profile-field">
         <label>Login Code (hidden by default)</label>
         <input type="text" id="edit-code" readonly style="width: 70%;" />
-        <button id="toggle-code">Show/Hide</button>
-        <button id="reset-code">Reset Code</button>
+        <button id="toggle-code"><i class="fas fa-eye"></i></button>
+        <button id="reset-code"><i class="fas fa-sync"></i></button>
       </div>
       <hr />
       <div class="profile-field">
@@ -64,12 +57,10 @@
         <label>Show Email to Friends?</label>
         <input type="checkbox" id="show-email"/>
       </div>
-      <div class="profile-field">
-        <label>Show Phone to Friends?</label>
-        <input type="checkbox" id="show-phone"/>
-      </div>
       <div class="profile-button">
-        <button id="save-profile" class="btn-primary">Save Changes</button>
+        <button id="save-profile" class="btn-primary">
+          <i class="fas fa-save"></i>Save Changes
+        </button>
       </div>
     </div>
   </section>
@@ -79,7 +70,6 @@
     <p>&copy; 2025 OnForm. All rights reserved.</p>
   </div>
 </footer>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 <script src="profile.js"></script>
 </body>
