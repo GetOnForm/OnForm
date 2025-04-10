@@ -6,50 +6,40 @@ const supabaseDash = supabase.createClient(
 let currentUser = null;
 
 async function fetchCurrentUser() {
-  const { data: sessionData, error } = await supabaseDash.auth.getSession();
+  const { data: sessionData } = await supabaseDash.auth.getSession();
   if (sessionData?.session?.user) {
-    const userEmail = sessionData.session.user.email;
-    if (userEmail) {
-      const { data: userRec, error: userErr } = await supabaseDash
-        .from('users')
-        .select('*')
-        .eq('email', userEmail)
-        .single();
-      if (userRec) return userRec;
-    }
+    const emailVal = sessionData.session.user.email;
+    const { data: userRec } = await supabaseDash
+      .from('users')
+      .select('*')
+      .eq('email', emailVal)
+      .single();
+    if (userRec) return userRec;
   }
-
-  // If not logged in, see if there's impersonation
   const impersonate = sessionStorage.getItem('impersonateUsername');
   if (impersonate) {
-    const { data, error } = await supabaseDash
+    const { data } = await supabaseDash
       .from('users')
       .select('*')
       .eq('username', impersonate)
       .single();
     if (data) return data;
   }
-
-  // Otherwise no user found
   return null;
 }
 
 async function loadDashboard() {
   currentUser = await fetchCurrentUser();
   if (!currentUser) {
-    // Optionally redirect to signup or show message
-    document.getElementById('welcome-name').innerText = 'Please log in';
+    document.getElementById('welcome-name').innerText = 'Please Log In';
     return;
   }
-
   document.getElementById('welcome-name').innerText = `Welcome, ${currentUser.full_name}`;
   document.getElementById('coin-balance').innerText = currentUser.total_coins;
   document.getElementById('streak-count').innerText = currentUser.current_streak;
 
-  // Run daily/weekly checks & finalize challenges
   await runMaintenance(currentUser);
 
-  // Refresh user data
   const { data: updated } = await supabaseDash
     .from('users')
     .select('*')
@@ -61,35 +51,33 @@ async function loadDashboard() {
     document.getElementById('streak-count').innerText = currentUser.current_streak;
   }
 
-  // Example: fetch today's tasks
   const today = new Date().toISOString().split('T')[0];
-  const { data: tasks, error: tasksError } = await supabaseDash
+  const { data: tasks } = await supabaseDash
     .from('task_templates')
     .select('*')
     .eq('user_id', currentUser.id);
+
   const taskList = document.getElementById('task-list');
   taskList.innerHTML = '';
-
-  if (!tasksError && tasks && tasks.length > 0) {
-    const dailyOrOnce = tasks.filter(t => {
-      if (t.frequency === 'daily') {
-        return (today >= t.start_date && today <= t.end_date);
-      } else if (t.frequency === 'once') {
-        return (today === t.start_date && t.start_date === t.end_date);
-      }
-      return false;
-    });
-    if (dailyOrOnce.length === 0) {
-      taskList.innerHTML = '<li>No tasks for today</li>';
-    } else {
-      dailyOrOnce.forEach(t => {
-        const li = document.createElement('li');
-        li.textContent = `${t.title} (${t.frequency})`;
-        taskList.appendChild(li);
-      });
-    }
-  } else {
+  if (!tasks || tasks.length === 0) {
     taskList.innerHTML = '<li>No tasks for today</li>';
+    return;
+  }
+
+  const dailyOrOnce = tasks.filter(t => {
+    if (t.frequency === 'daily') return (today >= t.start_date && today <= t.end_date);
+    if (t.frequency === 'once') return (t.start_date === today && t.end_date === today);
+    return false;
+  });
+
+  if (dailyOrOnce.length === 0) {
+    taskList.innerHTML = '<li>No tasks for today</li>';
+  } else {
+    dailyOrOnce.forEach(t => {
+      const li = document.createElement('li');
+      li.innerHTML = `<i class="fas fa-check-square"></i> ${t.title} (${t.frequency})`;
+      taskList.appendChild(li);
+    });
   }
 }
 
