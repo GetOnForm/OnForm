@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Friends</title>
+  <link rel="stylesheet" href="layout.css" />
+  <link rel="stylesheet" href="friends.css" />
+</head>
+<body>
+<nav class="navbar">
+  <div class="container nav-inner">
+    <div class="brand">OnForm</div>
+    <div class="nav-actions">
+      <a href="dashboard.html" class="btn-link">Dashboard</a>
+      <a href="groups.html" class="btn-link">Groups</a>
+      <a href="profile.html" class="btn-link">Profile</a>
+      <a href="signup.html" class="btn-primary small">Log Out</a>
+    </div>
+  </div>
+</nav>
+<main class="friends-page">
+  <section class="friend-actions">
+    <h1>Friends</h1>
+    <div>
+      <input type="text" id="friend-code" placeholder="Enter Friend Code">
+      <button id="request-friend">Send Friend Request</button>
+    </div>
+  </section>
+  <section>
+    <h2>Your Friends</h2>
+    <ul id="friends-list"></ul>
+  </section>
+  <section>
+    <h2>Pending Requests</h2>
+    <ul id="pending-requests"></ul>
+  </section>
+</main>
+<footer class="footer">
+  <div class="container">
+    <p>&copy; 2025 OnForm. All rights reserved.</p>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="friends.js"></script>
+</body>
+</html>
