@@ -6,29 +6,28 @@
   <title>Groups</title>
   <link rel="stylesheet" href="layout.css" />
   <link rel="stylesheet" href="groups.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
 <nav class="navbar">
   <div class="container nav-inner">
-    <div class="brand">OnForm</div>
+    <div class="brand"><i class="fas fa-users"></i> OnForm</div>
     <div class="nav-actions">
-      <a href="dashboard.html" class="btn-link">Dashboard</a>
-      <a href="friends.html" class="btn-link">Friends</a>
-      <a href="tasks.html" class="btn-link">Tasks</a>
-      <a href="profile.html" class="btn-link">Profile</a>
-      <a href="signup.html" class="btn-primary small">Log Out</a>
+      <a href="dashboard.html" class="btn-link"><i class="fas fa-home"></i>Dashboard</a>
+      <a href="friends.html" class="btn-link"><i class="fas fa-user-friends"></i>Friends</a>
+      <a href="tasks.html" class="btn-link"><i class="fas fa-tasks"></i>Tasks</a>
+      <a href="profile.html" class="btn-link"><i class="fas fa-user"></i>Profile</a>
+      <a href="signup.html" class="btn-primary small"><i class="fas fa-sign-out-alt"></i>Log Out</a>
     </div>
   </div>
 </nav>
 <main class="groups">
-  <section class="group-list">
-    <h2>Your Groups</h2>
+  <section class="group-list container">
+    <h2><i class="fas fa-users"></i> Your Groups</h2>
     <div id="groups-container"></div>
   </section>
 
-  <section class="group-create">
-    <h2>Create New Group</h2>
+  <section class="group-create container">
+    <h2><i class="fas fa-plus-circle"></i> Create New Group</h2>
     <form id="group-form">
       <input type="text" id="group-name" placeholder="Group Name" required />
       <textarea id="group-description" placeholder="Group Description" required></textarea>
@@ -44,23 +43,24 @@
       </select>
       <label>Coin Entry Requirement</label>
       <input type="number" id="group-coin-entry" placeholder="0" min="0" />
-      <button type="submit" class="btn-primary">Create Group</button>
+      <button type="submit" class="btn-primary btn-icon">
+        <i class="fas fa-paper-plane"></i>Create Group
+      </button>
     </form>
   </section>
 
-  <section class="group-find">
-    <h2>Search Public Groups</h2>
+  <section class="group-find container">
+    <h2><i class="fas fa-search"></i> Search Public Groups</h2>
     <input type="text" id="search-query" placeholder="Search by name" />
-    <button id="search-btn">Search</button>
-    <div id="search-results"></div>
+    <button id="search-btn" class="btn-primary btn-icon"><i class="fas fa-search"></i>Search</button>
+    <div id="search-results" style="margin-top: 10px;"></div>
   </section>
 
-  <section class="group-code-join">
-    <h2>Join by Code</h2>
+  <section class="group-code-join container">
+    <h2><i class="fas fa-key"></i> Join by Code</h2>
     <input type="text" id="code-join-input" placeholder="Enter Group Code" />
-    <button id="code-join-btn">Join with Code</button>
+    <button id="code-join-btn" class="btn-primary btn-icon"><i class="fas fa-sign-in-alt"></i>Join with Code</button>
   </section>
-
 </main>
 <footer class="footer">
   <div class="container">
