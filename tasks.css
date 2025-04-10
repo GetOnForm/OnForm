@@ -1,23 +1,37 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
+
 .tasks-page {
   padding: 40px 20px;
   max-width: 1000px;
   margin: 0 auto;
+  animation: fadeIn 0.5s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 .tasks-page h2 {
   font-size: 1.8rem;
   margin-bottom: 20px;
   text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
 }
 .task-create {
   margin-bottom: 30px;
   text-align: center;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-.task-create input, .task-create select {
+.task-create input, .task-create select, .task-create button, .task-create textarea {
+  margin: 6px;
   padding: 8px;
-  margin: 6px 0;
   border-radius: 6px;
   border: 1px solid #ccc;
-  width: 200px;
 }
 .task-list {
   margin-top: 20px;
@@ -30,10 +44,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 .task-instance.completed {
   opacity: 0.6;
 }
 .task-instance button {
   margin-left: 10px;
+  background: #007aff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.task-instance button:hover {
+  transform: scale(1.05);
+  background: #005bb5;
 }
