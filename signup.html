@@ -22,7 +22,6 @@
   <div class="auth-card">
     <h2 id="auth-title">Sign Up</h2>
     <form id="auth-form">
-      <!-- EMAIL -->
       <input
         type="email"
         id="email"
@@ -30,8 +29,6 @@
         placeholder="Email"
         required
       />
-
-      <!-- PASSWORD SECTION (default visible) -->
       <div id="password-section">
         <div class="password-wrapper">
           <input
@@ -52,7 +49,6 @@
         </ul>
       </div>
 
-      <!-- CODE SECTION (hidden by default) -->
       <div id="code-section" style="display: none;">
         <input
           type="text"
@@ -71,17 +67,10 @@
       </button>
     </form>
 
-    <!-- Toggle Sign Up / Log In -->
     <p class="toggle-text">
       <span id="toggle-auth">Already have an account? Log in</span>
     </p>
-
-    <!-- Toggle Password / Code for login -->
-    <p
-      class="toggle-text"
-      id="toggle-login-mode"
-      style="display: none;"
-    >
+    <p class="toggle-text" id="toggle-login-mode" style="display: none;">
       Log in with <a href="#" id="login-mode-link">Code</a>
     </p>
   </div>
@@ -92,7 +81,6 @@
     <p>&copy; 2025 OnForm. All rights reserved.</p>
   </div>
 </footer>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 <script src="auth.js"></script>
 </body>
