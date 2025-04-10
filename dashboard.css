@@ -1,14 +1,21 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
+
 .dashboard {
   padding: 40px 20px;
   max-width: 1000px;
   margin: 0 auto;
+  animation: fadeIn 0.5s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 .welcome {
   text-align: center;
   margin-bottom: 40px;
 }
 .welcome h1 {
-  font-size: 2rem;
+  font-size: 2.4rem;
   margin-bottom: 10px;
 }
 .welcome p {
@@ -29,4 +36,7 @@
 .tasks ul {
   list-style: none;
   padding: 0;
+}
+.task-instance i {
+  margin-right: 8px;
 }
