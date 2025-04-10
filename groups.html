@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Groups – OnForm</title>
-<link rel="stylesheet" href="layout.css" />
-<link rel="stylesheet" href="groups.css" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Groups</title>
+  <link rel="stylesheet" href="layout.css" />
+  <link rel="stylesheet" href="groups.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
 <nav class="navbar">
@@ -14,6 +14,7 @@
     <div class="brand">OnForm</div>
     <div class="nav-actions">
       <a href="dashboard.html" class="btn-link">Dashboard</a>
+      <a href="friends.html" class="btn-link">Friends</a>
       <a href="profile.html" class="btn-link">Profile</a>
       <a href="signup.html" class="btn-primary small">Log Out</a>
     </div>
@@ -21,7 +22,7 @@
 </nav>
 <main class="groups">
   <section class="group-list">
-    <h2>Your Study Groups</h2>
+    <h2>Your Groups</h2>
     <div id="groups-container"></div>
   </section>
   <section class="group-create">
@@ -29,6 +30,18 @@
     <form id="group-form">
       <input type="text" id="group-name" placeholder="Group Name" required />
       <textarea id="group-description" placeholder="Group Description" required></textarea>
+      <label>Public or Private?</label>
+      <select id="group-visibility">
+        <option value="public">Public</option>
+        <option value="private">Private</option>
+      </select>
+      <label>Join Requirement</label>
+      <select id="group-join-requirement">
+        <option value="anyone">Anyone can join</option>
+        <option value="request">Request required</option>
+      </select>
+      <label>Coin Entry Requirement</label>
+      <input type="number" id="group-coin-entry" placeholder="0" min="0" />
       <button type="submit" class="btn-primary">Create Group</button>
     </form>
   </section>
