@@ -19,10 +19,9 @@ async function fetchProfileUser() {
       if (userRec) return userRec;
     }
   }
-  // Check impersonation
   const impersonate = sessionStorage.getItem('impersonateUsername');
   if (impersonate) {
-    const { data, error } = await supabaseProfile
+    const { data } = await supabaseProfile
       .from('users')
       .select('*')
       .eq('username', impersonate)
@@ -49,9 +48,15 @@ function renderProfile() {
   document.getElementById('edit-username').value = currentProfileUser.username;
   document.getElementById('edit-phone').value = currentProfileUser.phone_number || '';
 
-  document.getElementById('edit-code').value = codeVisible
+  const codeField = document.getElementById('edit-code');
+  codeField.value = codeVisible
     ? (currentProfileUser.login_code || '')
     : '********';
+
+  // friend privacy
+  document.getElementById('show-streak').checked = currentProfileUser.show_streak_to_friends;
+  document.getElementById('show-email').checked = currentProfileUser.show_email_to_friends;
+  document.getElementById('show-phone').checked = currentProfileUser.show_phone_to_friends;
 }
 
 document.getElementById('toggle-code').addEventListener('click', () => {
@@ -87,12 +92,19 @@ document.getElementById('save-profile').addEventListener('click', async () => {
   const newUsername = document.getElementById('edit-username').value;
   const newPhone = document.getElementById('edit-phone').value;
 
+  const showStreak = document.getElementById('show-streak').checked;
+  const showEmail = document.getElementById('show-email').checked;
+  const showPhone = document.getElementById('show-phone').checked;
+
   const { data, error } = await supabaseProfile
     .from('users')
     .update({
       full_name: newFullName,
       username: newUsername,
-      phone_number: newPhone
+      phone_number: newPhone,
+      show_streak_to_friends: showStreak,
+      show_email_to_friends: showEmail,
+      show_phone_to_friends: showPhone
     })
     .match({ id: currentProfileUser.id })
     .single();
