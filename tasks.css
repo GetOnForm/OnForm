@@ -1,0 +1,39 @@
+.tasks-page {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.tasks-page h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.task-create {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.task-create input, .task-create select {
+  padding: 8px;
+  margin: 6px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 200px;
+}
+.task-list {
+  margin-top: 20px;
+}
+.task-instance {
+  background: #fff;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.task-instance.completed {
+  opacity: 0.6;
+}
+.task-instance button {
+  margin-left: 10px;
+}
