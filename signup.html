@@ -6,7 +6,6 @@
   <title>Sign Up / Log In</title>
   <link rel="stylesheet" href="layout.css" />
   <link rel="stylesheet" href="signup.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
 <nav class="navbar">
@@ -22,27 +21,23 @@
   <div class="auth-card">
     <h2 id="auth-title">Sign Up</h2>
     <form id="auth-form">
-      <!-- Email field with 'name' and 'required' -->
       <input
         type="email"
         id="email"
-        name="email"                <!-- Added name -->
+        name="email"
         placeholder="Email"
         required
       />
-
       <div class="password-wrapper">
-        <!-- Password field with 'name' and 'required' -->
         <input
           type="password"
           id="password"
-          name="password"           <!-- Added name -->
+          name="password"
           placeholder="Password"
           required
         />
         <span class="toggle-password" id="toggle-password">&#128065;</span>
       </div>
-
       <ul class="password-checks" id="password-checks">
         <li>❌ At least 8 characters</li>
         <li>❌ 1 uppercase letter</li>
@@ -50,7 +45,6 @@
         <li>❌ 1 number</li>
         <li>❌ 1 symbol</li>
       </ul>
-
       <button
         type="submit"
         class="btn-primary"
@@ -62,6 +56,11 @@
 
     <p class="toggle-text">
       <span id="toggle-auth">Already have an account? Log in</span>
+    </p>
+
+    <!-- This element MUST exist if your JS references it. -->
+    <p class="toggle-text" id="toggle-login-mode" style="display: none;">
+      <span>Log in with <a href="#" id="login-mode-link">Code</a> instead</span>
     </p>
   </div>
 </div>
