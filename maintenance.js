@@ -30,46 +30,38 @@ async function checkDailyTasks(user) {
         last_streak_date: today.toISOString().split('T')[0]
       })
       .eq('id', user.id);
-  } else {
-    // Possibly increment if they completed all must-do tasks
-    // This is simplified
   }
 }
 
 async function checkWeeklyTasks(user) {
-  // placeholder
+  // placeholder logic
 }
 
 async function finalizeChallenges(user) {
   const todayStr = new Date().toISOString().split('T')[0];
-  const { data: endedChallenges, error } = await supabaseMaint
+  const { data: endedChallenges } = await supabaseMaint
     .from('challenges')
     .select('*')
     .lt('end_date', todayStr);
-
   if (!endedChallenges || endedChallenges.length === 0) return;
 
   for (let ch of endedChallenges) {
-    // fetch participants
     const { data: parts } = await supabaseMaint
       .from('challenge_participants')
       .select('*')
       .eq('challenge_id', ch.id);
     if (!parts || parts.length === 0) continue;
 
-    let pot = 0;
-    parts.forEach(p => pot += p.coins_contributed);
+    let pot = 0; parts.forEach(p => pot += p.coins_contributed);
+    const share = (parts.length > 0) ? Math.floor(pot / parts.length) : 0;
 
-    // naive approach: all participants are winners
-    const share = parts.length > 0 ? Math.floor(pot / parts.length) : 0;
     for (let p of parts) {
-      const { data: rpcData, error: rpcErr } = await supabaseMaint.rpc('increment_coins', {
-        user_id_input: p.user_id,
-        amount_input: share
-      });
-      if (rpcErr) {
-        console.error('increment_coins error:', rpcErr);
-      } else {
+      const { error: rpcErr } = await supabaseMaint
+        .rpc('increment_coins', {
+          user_id_input: p.user_id,
+          amount_input: share
+        });
+      if (!rpcErr) {
         await supabaseMaint
           .from('coin_transactions')
           .insert({
@@ -80,7 +72,6 @@ async function finalizeChallenges(user) {
           });
       }
     }
-    // set pot=0, status=completed
     await supabaseMaint
       .from('challenges')
       .update({ pot: 0 })
