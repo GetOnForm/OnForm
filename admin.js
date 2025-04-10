@@ -1,6 +1,6 @@
 const supabaseAdmin = supabase.createClient(
-  'https://YOUR_SUPABASE_PROJECT_URL',
-  'YOUR_SUPABASE_ANON_KEY'
+ 'https://feyupwxdyriniiffghkc.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZleXVwd3hkeXJpbmlpZmZnaGtjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM5NjkwNzUsImV4cCI6MjA1OTU0NTA3NX0.VP6u6mmF9SCx1U6IuQegH-fBA4XSVRGwDQypjjf6Z1A'
 );
 
 document.getElementById('view-users').addEventListener('click', async () => {
