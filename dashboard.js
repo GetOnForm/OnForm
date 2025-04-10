@@ -1,65 +1,95 @@
-const supabaseClient = supabase.createClient(
+const supabaseDash = supabase.createClient(
   'https://feyupwxdyriniiffghkc.supabase.co',
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZleXVwd3hkeXJpbmlpZmZnaGtjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM5NjkwNzUsImV4cCI6MjA1OTU0NTA3NX0.VP6u6mmF9SCx1U6IuQegH-fBA4XSVRGwDQypjjf6Z1A'
 );
-const dummyUserId = '00000000-0000-0000-0000-000000000001';
+
+let currentUser = null;
+
+async function fetchCurrentUser() {
+  const { data: sessionData, error } = await supabaseDash.auth.getSession();
+  if (sessionData?.session?.user) {
+    const userEmail = sessionData.session.user.email;
+    if (userEmail) {
+      const { data: userRec, error: userErr } = await supabaseDash
+        .from('users')
+        .select('*')
+        .eq('email', userEmail)
+        .single();
+      if (userRec) return userRec;
+    }
+  }
+
+  // If not logged in, see if there's impersonation
+  const impersonate = sessionStorage.getItem('impersonateUsername');
+  if (impersonate) {
+    const { data, error } = await supabaseDash
+      .from('users')
+      .select('*')
+      .eq('username', impersonate)
+      .single();
+    if (data) return data;
+  }
+
+  // Otherwise no user found
+  return null;
+}
 
 async function loadDashboard() {
-  const today = new Date().toISOString().split("T")[0];
-  const { data: tasks, error: tasksError } = await supabaseClient
-    .from('tasks')
+  currentUser = await fetchCurrentUser();
+  if (!currentUser) {
+    // Optionally redirect to signup or show message
+    document.getElementById('welcome-name').innerText = 'Please log in';
+    return;
+  }
+
+  document.getElementById('welcome-name').innerText = `Welcome, ${currentUser.full_name}`;
+  document.getElementById('coin-balance').innerText = currentUser.total_coins;
+  document.getElementById('streak-count').innerText = currentUser.current_streak;
+
+  // Run daily/weekly checks & finalize challenges
+  await runMaintenance(currentUser);
+
+  // Refresh user data
+  const { data: updated } = await supabaseDash
+    .from('users')
     .select('*')
-    .eq('user_id', dummyUserId)
-    .eq('date', today);
+    .eq('id', currentUser.id)
+    .single();
+  if (updated) {
+    currentUser = updated;
+    document.getElementById('coin-balance').innerText = currentUser.total_coins;
+    document.getElementById('streak-count').innerText = currentUser.current_streak;
+  }
+
+  // Example: fetch today's tasks
+  const today = new Date().toISOString().split('T')[0];
+  const { data: tasks, error: tasksError } = await supabaseDash
+    .from('task_templates')
+    .select('*')
+    .eq('user_id', currentUser.id);
   const taskList = document.getElementById('task-list');
   taskList.innerHTML = '';
-  if (tasksError || !tasks || tasks.length === 0) {
+
+  if (!tasksError && tasks && tasks.length > 0) {
+    const dailyOrOnce = tasks.filter(t => {
+      if (t.frequency === 'daily') {
+        return (today >= t.start_date && today <= t.end_date);
+      } else if (t.frequency === 'once') {
+        return (today === t.start_date && t.start_date === t.end_date);
+      }
+      return false;
+    });
+    if (dailyOrOnce.length === 0) {
+      taskList.innerHTML = '<li>No tasks for today</li>';
+    } else {
+      dailyOrOnce.forEach(t => {
+        const li = document.createElement('li');
+        li.textContent = `${t.title} (${t.frequency})`;
+        taskList.appendChild(li);
+      });
+    }
+  } else {
     taskList.innerHTML = '<li>No tasks for today</li>';
-  } else {
-    tasks.forEach(task => {
-      const li = document.createElement('li');
-      li.className = `task ${task.completed ? 'complete' : 'pending'}`;
-      li.innerHTML = `${task.title} <span class="status">${task.completed ? '✔' : '○'}</span>`;
-      taskList.appendChild(li);
-    });
-  }
-  const { data: streakRow } = await supabaseClient
-    .from('streaks')
-    .select('current_streak')
-    .eq('user_id', dummyUserId)
-    .single();
-  document.getElementById('welcome-name').innerText = 'Welcome, Anele';
-  document.getElementById('streak-count').innerText = (streakRow?.current_streak || 0) + ' days';
-  const totalTasks = 7;
-  const completedTasks = tasks ? tasks.filter(t => t.completed).length : 0;
-  const progressPercentage = (completedTasks / totalTasks) * 100;
-  document.getElementById('streak-progress').style.width = progressPercentage + '%';
-  document.getElementById('progress-text').innerText = `Progress: ${completedTasks} out of ${totalTasks} tasks complete`;
-  const { data: rewards, error: rewardsError } = await supabaseClient
-    .from('rewards')
-    .select('*')
-    .order('required_streak');
-  const rewardGrid = document.getElementById('reward-grid');
-  rewardGrid.innerHTML = '';
-  if (!rewardsError && rewards) {
-    rewards.forEach(reward => {
-      const card = document.createElement('div');
-      card.className = 'reward-card';
-      if (streakRow.current_streak < reward.required_streak) card.classList.add('locked');
-      card.innerHTML = `<h3>${reward.name}</h3><p>${reward.description}</p>`;
-      rewardGrid.appendChild(card);
-    });
-  }
-  const { data: passData, error: passError } = await supabaseClient
-    .from('performance_passes')
-    .select('*')
-    .eq('user_id', dummyUserId)
-    .single();
-  const ppInfo = document.getElementById('performance-pass-info');
-  if (!passError && passData && passData.activated) {
-    ppInfo.innerHTML = `<p>Your Performance Pass is active. Deposit: R${passData.deposit}. Expires: ${new Date(passData.expires_at).toLocaleDateString()}</p>`;
-  } else {
-    ppInfo.innerHTML = `<p>You have not activated a Performance Pass. <a href="profile.html">Learn more</a></p>`;
   }
 }
 
