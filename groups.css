@@ -1,20 +1,18 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
+
 .groups {
-  padding: 40px 20px;
+  padding: 20px;
   max-width: 1000px;
   margin: 0 auto;
+  animation: fadeInUp 0.5s ease;
 }
-.group-list, .group-create {
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.group-list, .group-create, .group-find, .group-code-join {
   margin-bottom: 40px;
   text-align: center;
-}
-.group-list h2, .group-create h2 {
-  font-size: 1.8rem;
-  margin-bottom: 20px;
-}
-#groups-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
 }
 .group-card {
   background: #fff;
@@ -22,17 +20,20 @@
   padding: 16px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   text-align: left;
+  margin-bottom: 10px;
+  transition: transform 0.2s;
+}
+.group-card:hover {
+  transform: scale(1.02);
 }
 .group-card h3 {
   margin-top: 0;
   color: #007aff;
 }
-form input, form textarea, form select {
-  width: 100%;
-  padding: 12px 16px;
-  margin-bottom: 16px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-  box-sizing: border-box;
+button.btn-icon i {
+  margin-right: 6px;
+  transition: transform 0.2s;
+}
+button.btn-icon:hover i {
+  transform: rotate(20deg);
 }
