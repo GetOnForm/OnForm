@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Dashboard – OnForm</title>
-<link rel="stylesheet" href="layout.css" />
-<link rel="stylesheet" href="dashboard.css" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="layout.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
 <nav class="navbar">
@@ -15,6 +15,7 @@
     <div class="nav-actions">
       <a href="index.html" class="btn-link">Home</a>
       <a href="groups.html" class="btn-link">Groups</a>
+      <a href="friends.html" class="btn-link">Friends</a>
       <a href="profile.html" class="btn-link">Profile</a>
       <a href="signup.html" class="btn-primary small">Log Out</a>
     </div>
@@ -23,26 +24,12 @@
 <main class="dashboard">
   <section class="welcome">
     <h1 id="welcome-name">Welcome</h1>
-    <p>Your current streak: <span class="streak" id="streak-count">...</span></p>
+    <p>Your current streak: <span class="streak" id="streak-count">0</span></p>
+    <p>Your coins: <span id="coin-balance">0</span></p>
   </section>
   <section class="tasks">
     <h2>Today's Tasks</h2>
     <ul id="task-list"></ul>
-  </section>
-  <section class="streak-tracker">
-    <h2>Streak Tracker</h2>
-    <div class="progress-bar">
-      <div class="progress" id="streak-progress" style="width: 0;"></div>
-    </div>
-    <p id="progress-text">Progress: 0 out of 7 tasks complete</p>
-  </section>
-  <section class="rewards">
-    <h2>Rewards</h2>
-    <div class="reward-grid" id="reward-grid"></div>
-  </section>
-  <section class="performance-pass">
-    <h2>Performance Pass</h2>
-    <div id="performance-pass-info"></div>
   </section>
 </main>
 <footer class="footer">
@@ -51,6 +38,7 @@
   </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="maintenance.js"></script>
 <script src="dashboard.js"></script>
 </body>
 </html>
