@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Group Detail</title>
+  <link rel="stylesheet" href="layout.css">
+  <link rel="stylesheet" href="groups.css">
+</head>
+<body>
+<nav class="navbar">
+  <div class="container nav-inner">
+    <div class="brand">OnForm</div>
+    <div class="nav-actions">
+      <a href="dashboard.html" class="btn-link">Dashboard</a>
+      <a href="groups.html" class="btn-link">Groups</a>
+      <a href="friends.html" class="btn-link">Friends</a>
+      <a href="tasks.html" class="btn-link">Tasks</a>
+      <a href="profile.html" class="btn-link">Profile</a>
+      <a href="signup.html" class="btn-primary small">Log Out</a>
+    </div>
+  </div>
+</nav>
+<main class="groups">
+  <section class="group-detail">
+    <h2 id="group-title"></h2>
+    <p id="group-description"></p>
+    <p>Join Code: <span id="group-code">N/A</span> <button id="refresh-code-btn" style="display:none;">Generate Code</button></p>
+  </section>
+
+  <section class="group-members">
+    <h2>Members</h2>
+    <ul id="members-list"></ul>
+  </section>
+
+  <section id="membership-requests" style="display:none;">
+    <h2>Pending Requests</h2>
+    <ul id="requests-list"></ul>
+  </section>
+
+  <section id="challenge-section" style="display:none;">
+    <h2>Create Challenge</h2>
+    <div>
+      <input type="text" id="challenge-name" placeholder="Challenge Name" />
+      <textarea id="challenge-desc" placeholder="Challenge Description"></textarea>
+      <input type="number" id="challenge-fee" placeholder="Entry Fee" />
+      <input type="date" id="challenge-start" />
+      <input type="date" id="challenge-end" />
+      <button id="create-challenge-btn">Create Challenge</button>
+    </div>
+    <h3>Existing Challenges</h3>
+    <ul id="challenge-list"></ul>
+  </section>
+</main>
+<footer class="footer">
+  <div class="container">
+    <p>&copy; 2025 OnForm. All rights reserved.</p>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="group_detail.js"></script>
+</body>
+</html>
