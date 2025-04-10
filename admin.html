@@ -1,31 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin Dashboard</title>
-  <link rel="stylesheet" href="layout.css">
-  <link rel="stylesheet" href="admin.css">
-</head>
-<body>
-<nav class="navbar">
-  <div class="container nav-inner">
-    <div class="brand">OnForm Admin</div>
-    <div class="nav-actions">
-      <a href="dashboard.html" class="btn-link">User View</a>
-    </div>
-  </div>
-</nav>
-<main class="admin-dashboard">
-  <section>
-    <h1>Admin Dashboard</h1>
-    <button id="view-users">View All Users</button>
-    <button id="view-groups">View All Groups</button>
-    <button id="view-impersonate">Impersonate User</button>
-  </section>
-  <section id="admin-content"></section>
-</main>
-</body>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-<script src="admin.js"></script>
-</html>
+const supabaseAdmin = supabase.createClient(
+  'https://feyupwxdyriniiffghkc.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZleXVwd3hkeXJpbmlpZmZnaGtjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDM5NjkwNzUsImV4cCI6MjA1OTU0NTA3NX0.VP6u6mmF9SCx1U6IuQegH-fBA4XSVRGwDQypjjf6Z1A'
+);
+
+document.getElementById('view-users').addEventListener('click', async () => {
+  const { data, error } = await supabaseAdmin
+    .from('users')
+    .select('*');
+  const content = document.getElementById('admin-content');
+  if (error) {
+    content.innerHTML = '<p>Error loading users.</p>';
+  } else {
+    let html = '<h2>All Users</h2><ul>';
+    data.forEach(u => {
+      html += `<li>
+        ${u.full_name} | ${u.email} | ${u.username} | 
+        Role: ${u.role} | Deactivated: ${u.is_deactivated} | 
+        Streak: ${u.current_streak}/${u.longest_streak}
+      </li>`;
+    });
+    html += '</ul>';
+    content.innerHTML = html;
+  }
+});
+
+document.getElementById('view-groups').addEventListener('click', async () => {
+  const { data, error } = await supabaseAdmin
+    .from('groups')
+    .select('*');
+  const content = document.getElementById('admin-content');
+  if (error) {
+    content.innerHTML = '<p>Error loading groups.</p>';
+  } else {
+    let html = '<h2>All Groups</h2><ul>';
+    data.forEach(g => {
+      html += `<li>${g.name} | Certified: ${g.is_certified} | Public: ${g.is_public}</li>`;
+    });
+    html += '</ul>';
+    content.innerHTML = html;
+  }
+});
+
+document.getElementById('view-impersonate').addEventListener('click', () => {
+  const userName = prompt('Enter username to impersonate:');
+  if (userName) {
+    sessionStorage.setItem('impersonateUsername', userName);
+    alert(`Impersonating ${userName}. Go to dashboard now.`);
+  }
+});
