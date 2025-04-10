@@ -1,13 +1,54 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
+
 .friends-page {
   padding: 20px;
   max-width: 800px;
   margin: 0 auto;
+  animation: fadeInUp 0.5s ease;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 .friend-actions {
   margin-bottom: 20px;
+  text-align: center;
 }
 .friend-actions div {
   display: flex;
   gap: 8px;
+  justify-content: center;
   align-items: center;
+}
+.friend-actions button {
+  transition: background 0.2s;
+}
+.friend-actions button:hover {
+  background: #005bb5;
+}
+.friend-actions input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+#friends-list, #pending-requests {
+  list-style: none;
+  padding: 0;
+}
+#friends-list li, #pending-requests li {
+  background: #fff;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+button.toggle-info {
+  margin-left: 10px;
+  cursor: pointer;
+}
+button.toggle-info i {
+  transition: transform 0.2s;
+}
+button.toggle-info:hover i {
+  transform: rotate(20deg);
 }
