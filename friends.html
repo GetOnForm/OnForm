@@ -10,30 +10,30 @@
 <body>
 <nav class="navbar">
   <div class="container nav-inner">
-    <div class="brand">OnForm</div>
+    <div class="brand"><i class="fas fa-user-friends"></i> OnForm</div>
     <div class="nav-actions">
-      <a href="dashboard.html" class="btn-link">Dashboard</a>
-      <a href="groups.html" class="btn-link">Groups</a>
-      <a href="tasks.html" class="btn-link">Tasks</a>
-      <a href="profile.html" class="btn-link">Profile</a>
-      <a href="signup.html" class="btn-primary small">Log Out</a>
+      <a href="dashboard.html" class="btn-link"><i class="fas fa-home"></i>Dashboard</a>
+      <a href="groups.html" class="btn-link"><i class="fas fa-users"></i>Groups</a>
+      <a href="tasks.html" class="btn-link"><i class="fas fa-tasks"></i>Tasks</a>
+      <a href="profile.html" class="btn-link"><i class="fas fa-user"></i>Profile</a>
+      <a href="signup.html" class="btn-primary small"><i class="fas fa-sign-out-alt"></i>Log Out</a>
     </div>
   </div>
 </nav>
 <main class="friends-page">
   <section class="friend-actions">
-    <h1>Friends</h1>
+    <h1><i class="fas fa-user-friends"></i> Friends</h1>
     <div>
       <input type="text" id="friend-code" placeholder="Enter Friend Code">
-      <button id="request-friend">Send Friend Request</button>
+      <button id="request-friend" class="btn-primary"><i class="fas fa-paper-plane"></i> Send Friend Request</button>
     </div>
   </section>
   <section>
-    <h2>Your Friends</h2>
+    <h2><i class="fas fa-check"></i> Your Friends</h2>
     <ul id="friends-list"></ul>
   </section>
   <section>
-    <h2>Pending Requests</h2>
+    <h2><i class="fas fa-hourglass-half"></i> Pending Requests</h2>
     <ul id="pending-requests"></ul>
   </section>
 </main>
