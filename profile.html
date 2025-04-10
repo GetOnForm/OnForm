@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Profile – OnForm</title>
-<link rel="stylesheet" href="layout.css" />
-<link rel="stylesheet" href="profile.css" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profile</title>
+  <link rel="stylesheet" href="layout.css" />
+  <link rel="stylesheet" href="profile.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
 <nav class="navbar">
@@ -15,6 +15,7 @@
     <div class="nav-actions">
       <a href="dashboard.html" class="btn-link">Dashboard</a>
       <a href="groups.html" class="btn-link">Groups</a>
+      <a href="friends.html" class="btn-link">Friends</a>
       <a href="signup.html" class="btn-primary small">Log Out</a>
     </div>
   </div>
@@ -22,11 +23,40 @@
 <main class="profile">
   <section class="profile-info">
     <h2>Your Profile</h2>
-    <div id="profile-details"></div>
+    <div id="profile-details">
+      <p id="profile-name"></p>
+      <p id="profile-email"></p>
+      <p id="profile-username"></p>
+      <p id="profile-phone"></p>
+      <p>Joined: <span id="profile-joined"></span></p>
+    </div>
   </section>
-  <section class="performance-details">
-    <h2>Performance Pass Status</h2>
-    <div id="performance-details"></div>
+
+  <section class="account-details">
+    <h2>Account Settings</h2>
+    <div id="account-details-container">
+      <div class="profile-field">
+        <label>Full Name</label>
+        <input type="text" id="edit-full-name" />
+      </div>
+      <div class="profile-field">
+        <label>Username</label>
+        <input type="text" id="edit-username" />
+      </div>
+      <div class="profile-field">
+        <label>Phone Number</label>
+        <input type="text" id="edit-phone" />
+      </div>
+      <div class="profile-field">
+        <label>Login Code (hidden by default)</label>
+        <input type="text" id="edit-code" readonly style="width: 70%;" />
+        <button id="toggle-code">Show/Hide</button>
+        <button id="reset-code">Reset Code</button>
+      </div>
+      <div class="profile-button">
+        <button id="save-profile" class="btn-primary">Save Changes</button>
+      </div>
+    </div>
   </section>
 </main>
 <footer class="footer">
