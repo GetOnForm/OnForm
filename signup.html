@@ -6,6 +6,7 @@
   <title>Sign Up / Log In</title>
   <link rel="stylesheet" href="layout.css" />
   <link rel="stylesheet" href="signup.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
 <nav class="navbar">
@@ -21,6 +22,7 @@
   <div class="auth-card">
     <h2 id="auth-title">Sign Up</h2>
     <form id="auth-form">
+      <!-- Email field (required, with name attribute) -->
       <input
         type="email"
         id="email"
@@ -28,23 +30,38 @@
         placeholder="Email"
         required
       />
-      <div class="password-wrapper">
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Password"
-          required
-        />
-        <span class="toggle-password" id="toggle-password">&#128065;</span>
+
+      <!-- Password section (default visible) -->
+      <div id="password-section">
+        <div class="password-wrapper">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+          <span class="toggle-password" id="toggle-password">&#128065;</span>
+        </div>
+        <ul class="password-checks" id="password-checks">
+          <li>❌ At least 8 characters</li>
+          <li>❌ 1 uppercase letter</li>
+          <li>❌ 1 lowercase letter</li>
+          <li>❌ 1 number</li>
+          <li>❌ 1 symbol</li>
+        </ul>
       </div>
-      <ul class="password-checks" id="password-checks">
-        <li>❌ At least 8 characters</li>
-        <li>❌ 1 uppercase letter</li>
-        <li>❌ 1 lowercase letter</li>
-        <li>❌ 1 number</li>
-        <li>❌ 1 symbol</li>
-      </ul>
+
+      <!-- Code section (hidden by default, for "Log In with Code") -->
+      <div id="code-section" style="display: none;">
+        <input
+          type="text"
+          id="code-input"
+          name="code-input"
+          placeholder="Enter your login code"
+        />
+      </div>
+
       <button
         type="submit"
         class="btn-primary"
@@ -54,13 +71,18 @@
       </button>
     </form>
 
+    <!-- Toggle between sign up / log in -->
     <p class="toggle-text">
       <span id="toggle-auth">Already have an account? Log in</span>
     </p>
 
-    <!-- This element MUST exist if your JS references it. -->
-    <p class="toggle-text" id="toggle-login-mode" style="display: none;">
-      <span>Log in with <a href="#" id="login-mode-link">Code</a> instead</span>
+    <!-- Toggle between password vs. code when logging in -->
+    <p
+      class="toggle-text"
+      id="toggle-login-mode"
+      style="display: none;"
+    >
+      Log in with <a href="#" id="login-mode-link">Code</a> instead
     </p>
   </div>
 </div>
