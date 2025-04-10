@@ -11,11 +11,14 @@ document.getElementById('view-users').addEventListener('click', async () => {
   if (error) {
     content.innerHTML = '<p>Error loading users.</p>';
   } else {
-    let html = '<h2>All Users</h2><ul>';
+    let html = '<h2><i class="fas fa-users"></i> All Users</h2><ul>';
     data.forEach(u => {
       html += `<li>
-        ${u.full_name} | ${u.email} | ${u.username} | 
-        Role: ${u.role} | Deactivated: ${u.is_deactivated} | 
+        <strong>${u.full_name}</strong> |
+        <em>${u.email}</em> |
+        @${u.username} |
+        Role: ${u.role} |
+        Deactivated: ${u.is_deactivated} |
         Streak: ${u.current_streak}/${u.longest_streak}
       </li>`;
     });
@@ -32,10 +35,13 @@ document.getElementById('view-groups').addEventListener('click', async () => {
   if (error) {
     content.innerHTML = '<p>Error loading groups.</p>';
   } else {
-    let html = '<h2>All Groups</h2><ul>';
+    let html = '<h2><i class="fas fa-layer-group"></i> All Groups</h2><ul>';
     data.forEach(g => {
       html += `<li>
-        ${g.name} | Certified: ${g.is_certified} | Public: ${g.is_public} | Join Code: ${g.join_code || 'N/A'}
+        <strong>${g.name}</strong> |
+        Certified: ${g.is_certified} |
+        Public: ${g.is_public} |
+        Join Code: ${g.join_code || 'N/A'}
       </li>`;
     });
     html += '</ul>';
@@ -57,8 +63,7 @@ document.getElementById('admin-coin-button').addEventListener('click', async () 
   const amount = parseInt(document.getElementById('admin-coin-amount').value, 10);
   if (!username || isNaN(amount)) return alert('Invalid input');
 
-  // Find user
-  const { data: userRec, error: userErr } = await supabaseAdmin
+  const { data: userRec } = await supabaseAdmin
     .from('users')
     .select('*')
     .eq('username', username)
@@ -66,7 +71,6 @@ document.getElementById('admin-coin-button').addEventListener('click', async () 
   if (!userRec) return alert('User not found');
 
   const newBalance = userRec.total_coins + amount;
-  // update
   const { error: updateErr } = await supabaseAdmin
     .from('users')
     .update({ total_coins: newBalance })
@@ -75,7 +79,7 @@ document.getElementById('admin-coin-button').addEventListener('click', async () 
   if (updateErr) {
     alert('Error adjusting coins: ' + updateErr.message);
   } else {
-    // optional coin transaction log
+    // optional transaction log
     await supabaseAdmin
       .from('coin_transactions')
       .insert({
@@ -92,7 +96,7 @@ document.getElementById('admin-certify-button').addEventListener('click', async 
   const gName = document.getElementById('admin-group-name').value.trim();
   if (!gName) return alert('No group name provided');
 
-  const { data: grp, error: gErr } = await supabaseAdmin
+  const { data: grp } = await supabaseAdmin
     .from('groups')
     .select('*')
     .eq('name', gName)
@@ -105,16 +109,15 @@ document.getElementById('admin-certify-button').addEventListener('click', async 
     .update({ is_certified: newVal })
     .eq('id', grp.id);
   if (updErr) return alert('Error toggling certification: ' + updErr.message);
-  alert(`Group "${gName}" certified set to ${newVal}.`);
+  alert(`Group "${gName}" certified is now: ${newVal}`);
 });
 
-// Force add member to group
+// Force add member
 document.getElementById('admin-add-member-button').addEventListener('click', async () => {
   const username = document.getElementById('admin-add-username').value.trim();
   const groupName = document.getElementById('admin-add-group').value.trim();
   if (!username || !groupName) return alert('Invalid input');
 
-  // find user
   const { data: userRec } = await supabaseAdmin
     .from('users')
     .select('*')
@@ -122,7 +125,6 @@ document.getElementById('admin-add-member-button').addEventListener('click', asy
     .single();
   if (!userRec) return alert('User not found');
 
-  // find group
   const { data: grp } = await supabaseAdmin
     .from('groups')
     .select('*')
@@ -130,7 +132,6 @@ document.getElementById('admin-add-member-button').addEventListener('click', asy
     .single();
   if (!grp) return alert('Group not found');
 
-  // check if already member
   const { data: memCheck } = await supabaseAdmin
     .from('group_members')
     .select('*')
@@ -138,11 +139,10 @@ document.getElementById('admin-add-member-button').addEventListener('click', asy
     .eq('user_id', userRec.id)
     .single();
   if (memCheck) {
-    alert('User is already in this group or pending');
+    alert('User already in or pending for this group');
     return;
   }
 
-  // insert
   const { error: insErr } = await supabaseAdmin
     .from('group_members')
     .insert({
