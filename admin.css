@@ -1,14 +1,28 @@
 .admin-dashboard {
-padding: 20px;
-max-width: 1000px;
-margin: 0 auto;
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 .admin-dashboard section {
-margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 #admin-content {
-background: #fff;
-border-radius: 8px;
-padding: 20px;
-box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.admin-tools {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.admin-tools label {
+  font-weight: 600;
+}
+.admin-tools input {
+  padding: 8px;
+  margin-bottom: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
 }
