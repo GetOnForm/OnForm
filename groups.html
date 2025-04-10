@@ -15,6 +15,7 @@
     <div class="nav-actions">
       <a href="dashboard.html" class="btn-link">Dashboard</a>
       <a href="friends.html" class="btn-link">Friends</a>
+      <a href="tasks.html" class="btn-link">Tasks</a>
       <a href="profile.html" class="btn-link">Profile</a>
       <a href="signup.html" class="btn-primary small">Log Out</a>
     </div>
@@ -25,6 +26,7 @@
     <h2>Your Groups</h2>
     <div id="groups-container"></div>
   </section>
+
   <section class="group-create">
     <h2>Create New Group</h2>
     <form id="group-form">
@@ -45,6 +47,20 @@
       <button type="submit" class="btn-primary">Create Group</button>
     </form>
   </section>
+
+  <section class="group-find">
+    <h2>Search Public Groups</h2>
+    <input type="text" id="search-query" placeholder="Search by name" />
+    <button id="search-btn">Search</button>
+    <div id="search-results"></div>
+  </section>
+
+  <section class="group-code-join">
+    <h2>Join by Code</h2>
+    <input type="text" id="code-join-input" placeholder="Enter Group Code" />
+    <button id="code-join-btn">Join with Code</button>
+  </section>
+
 </main>
 <footer class="footer">
   <div class="container">
