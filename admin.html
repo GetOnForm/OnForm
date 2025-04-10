@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Admin Dashboard</title>
-<link rel="stylesheet" href="layout.css">
-<link rel="stylesheet" href="admin.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="layout.css">
+  <link rel="stylesheet" href="admin.css">
 </head>
 <body>
 <nav class="navbar">
-<div class="container nav-inner">
-<div class="brand">OnForm Admin</div>
-<div class="nav-actions">
-<a href="dashboard.html" class="btn-link">User View</a>
-</div>
-</div>
+  <div class="container nav-inner">
+    <div class="brand">OnForm Admin</div>
+    <div class="nav-actions">
+      <a href="dashboard.html" class="btn-link">User View</a>
+    </div>
+  </div>
 </nav>
 <main class="admin-dashboard">
-<section>
-<h1>Admin Dashboard</h1>
-<button id="view-users">View All Users</button>
-<button id="view-groups">View All Groups</button>
-<button id="view-impersonate">Impersonate User</button>
-</section>
-<section id="admin-content"></section>
+  <section>
+    <h1>Admin Dashboard</h1>
+    <button id="view-users">View All Users</button>
+    <button id="view-groups">View All Groups</button>
+    <button id="view-impersonate">Impersonate User</button>
+  </section>
+  <section id="admin-content"></section>
 </main>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
