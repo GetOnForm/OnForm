@@ -6,32 +6,31 @@
   <title>Dashboard</title>
   <link rel="stylesheet" href="layout.css" />
   <link rel="stylesheet" href="dashboard.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
 <nav class="navbar">
   <div class="container nav-inner">
-    <div class="brand">OnForm</div>
+    <div class="brand"><i class="fas fa-bolt"></i> OnForm</div>
     <div class="nav-actions">
-      <a href="index.html" class="btn-link">Home</a>
-      <a href="groups.html" class="btn-link">Groups</a>
-      <a href="friends.html" class="btn-link">Friends</a>
-      <a href="tasks.html" class="btn-link">Tasks</a>
-      <a href="profile.html" class="btn-link">Profile</a>
-      <a href="signup.html" class="btn-primary small">Log Out</a>
+      <a href="index.html" class="btn-link"><i class="fas fa-home"></i>Home</a>
+      <a href="groups.html" class="btn-link"><i class="fas fa-users"></i>Groups</a>
+      <a href="friends.html" class="btn-link"><i class="fas fa-user-friends"></i>Friends</a>
+      <a href="tasks.html" class="btn-link"><i class="fas fa-tasks"></i>Tasks</a>
+      <a href="profile.html" class="btn-link"><i class="fas fa-user"></i>Profile</a>
+      <a href="signup.html" class="btn-primary small"><i class="fas fa-sign-out-alt"></i>Log Out</a>
     </div>
   </div>
 </nav>
 <main class="dashboard">
   <section class="welcome">
-    <h1 id="welcome-name">Welcome</h1>
+    <h1 id="welcome-name">Welcome <i class="fas fa-smile"></i></h1>
     <p>Your current streak: <span class="streak" id="streak-count">0</span></p>
-    <p>Your coins: <span id="coin-balance">0</span></p>
+    <p>Your coins: <span id="coin-balance">0</span> <i class="fas fa-coins"></i></p>
   </section>
   <section class="tasks">
-    <h2>Today's Tasks (preview)</h2>
+    <h2><i class="fas fa-calendar-day"></i> Today’s Tasks</h2>
     <ul id="task-list"></ul>
-    <p>For full task management, go to <a href="tasks.html">Tasks Page</a>.</p>
+    <p style="text-align: center;">For more options, visit <a href="tasks.html"><i class="fas fa-tasks"></i>Tasks Page</a>.</p>
   </section>
 </main>
 <footer class="footer">
