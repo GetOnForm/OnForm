@@ -16,6 +16,7 @@
       <a href="dashboard.html" class="btn-link">Dashboard</a>
       <a href="groups.html" class="btn-link">Groups</a>
       <a href="friends.html" class="btn-link">Friends</a>
+      <a href="tasks.html" class="btn-link">Tasks</a>
       <a href="signup.html" class="btn-primary small">Log Out</a>
     </div>
   </div>
@@ -53,6 +54,19 @@
         <button id="toggle-code">Show/Hide</button>
         <button id="reset-code">Reset Code</button>
       </div>
+      <hr />
+      <div class="profile-field">
+        <label>Show Streak to Friends?</label>
+        <input type="checkbox" id="show-streak"/>
+      </div>
+      <div class="profile-field">
+        <label>Show Email to Friends?</label>
+        <input type="checkbox" id="show-email"/>
+      </div>
+      <div class="profile-field">
+        <label>Show Phone to Friends?</label>
+        <input type="checkbox" id="show-phone"/>
+      </div>
       <div class="profile-button">
         <button id="save-profile" class="btn-primary">Save Changes</button>
       </div>
@@ -61,10 +75,4 @@
 </main>
 <footer class="footer">
   <div class="container">
-    <p>&copy; 2025 OnForm. All rights reserved.</p>
-  </div>
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-<script src="profile.js"></script>
-</body>
-</html>
+    <p>&copy; 2025 OnForm. All
