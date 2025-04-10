@@ -22,7 +22,7 @@
   <div class="auth-card">
     <h2 id="auth-title">Sign Up</h2>
     <form id="auth-form">
-      <!-- Email field (required, with name attribute) -->
+      <!-- EMAIL -->
       <input
         type="email"
         id="email"
@@ -31,7 +31,7 @@
         required
       />
 
-      <!-- Password section (default visible) -->
+      <!-- PASSWORD SECTION (default visible) -->
       <div id="password-section">
         <div class="password-wrapper">
           <input
@@ -52,13 +52,13 @@
         </ul>
       </div>
 
-      <!-- Code section (hidden by default, for "Log In with Code") -->
+      <!-- CODE SECTION (hidden by default) -->
       <div id="code-section" style="display: none;">
         <input
           type="text"
           id="code-input"
           name="code-input"
-          placeholder="Enter your login code"
+          placeholder="Login Code"
         />
       </div>
 
@@ -71,18 +71,18 @@
       </button>
     </form>
 
-    <!-- Toggle between sign up / log in -->
+    <!-- Toggle Sign Up / Log In -->
     <p class="toggle-text">
       <span id="toggle-auth">Already have an account? Log in</span>
     </p>
 
-    <!-- Toggle between password vs. code when logging in -->
+    <!-- Toggle Password / Code for login -->
     <p
       class="toggle-text"
       id="toggle-login-mode"
       style="display: none;"
     >
-      Log in with <a href="#" id="login-mode-link">Code</a> instead
+      Log in with <a href="#" id="login-mode-link">Code</a>
     </p>
   </div>
 </div>
@@ -92,6 +92,7 @@
     <p>&copy; 2025 OnForm. All rights reserved.</p>
   </div>
 </footer>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 <script src="auth.js"></script>
 </body>
