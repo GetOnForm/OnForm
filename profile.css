@@ -4,17 +4,35 @@
   margin: 0 auto;
   text-align: center;
 }
-.profile-info, .performance-details {
+.profile-info, .account-details {
   margin-bottom: 40px;
 }
-.profile-info h2, .performance-details h2 {
+.profile-info h2, .account-details h2 {
   font-size: 1.8rem;
   margin-bottom: 20px;
 }
-#profile-details, #performance-details {
+#profile-details, #account-details-container {
   background: #fff;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   text-align: left;
+}
+.profile-field {
+  margin-bottom: 10px;
+}
+.profile-field label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+.profile-field input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+.profile-button {
+  margin-top: 20px;
 }
