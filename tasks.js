@@ -9,14 +9,12 @@ async function fetchTaskUser() {
   const { data: sessionData } = await supabaseTasks.auth.getSession();
   if (sessionData?.session?.user) {
     const email = sessionData.session.user.email;
-    if (email) {
-      const { data: userRec } = await supabaseTasks
-        .from('users')
-        .select('*')
-        .eq('email', email)
-        .single();
-      if (userRec) return userRec;
-    }
+    const { data: userRec } = await supabaseTasks
+      .from('users')
+      .select('*')
+      .eq('email', email)
+      .single();
+    if (userRec) return userRec;
   }
   const imp = sessionStorage.getItem('impersonateUsername');
   if (imp) {
@@ -30,7 +28,6 @@ async function fetchTaskUser() {
   return null;
 }
 
-// Create a new task template
 document.getElementById('create-task-btn').addEventListener('click', async () => {
   if (!currentTaskUser) return alert('Please log in');
   const title = document.getElementById('task-title').value.trim();
@@ -39,12 +36,11 @@ document.getElementById('create-task-btn').addEventListener('click', async () =>
   const startDate = document.getElementById('task-start').value;
   const endDate = document.getElementById('task-end').value;
   const hoursReq = parseFloat(document.getElementById('task-hours').value) || 0;
-  const timesWeek = parseInt(document.getElementById('task-times').value, 10) || 0;
+  const timesWeek = parseInt(document.getElementById('task-times').value) || 0;
 
   if (!title || !startDate) return alert('Title and Start Date required');
   if (freq === 'once' && !endDate) {
-    // for once, enddate == startdate
-    alert('For once tasks, set the End Date same as Start date');
+    alert('For once tasks, set End Date same as Start date');
     return;
   }
 
@@ -73,12 +69,10 @@ async function loadTodayTasks() {
   if (!currentTaskUser) return;
   const today = new Date().toISOString().split('T')[0];
 
-  // fetch daily tasks or once tasks that match today
   const { data: tpls } = await supabaseTasks
     .from('task_templates')
     .select('*')
     .eq('user_id', currentTaskUser.id);
-
   const container = document.getElementById('today-tasks');
   container.innerHTML = '';
 
@@ -86,53 +80,50 @@ async function loadTodayTasks() {
     container.innerHTML = '<p>No tasks found</p>';
     return;
   }
-
-  // Filter daily or once tasks for "today"
   const relevant = tpls.filter(t => {
-    if (t.frequency === 'daily' && today >= t.start_date && today <= t.end_date) return true;
-    if (t.frequency === 'once' && t.start_date === today && t.end_date === today) return true;
+    if (t.frequency === 'daily') return (today >= t.start_date && today <= t.end_date);
+    if (t.frequency === 'once') return (t.start_date === today && t.end_date === today);
     return false;
   });
-
   if (relevant.length === 0) {
     container.innerHTML = '<p>No tasks for today</p>';
     return;
   }
 
   for (let rt of relevant) {
-    // see if we have an instance for today
     const { data: inst } = await supabaseTasks
       .from('task_instances')
       .select('*')
       .eq('template_id', rt.id)
       .eq('instance_date', today)
       .single();
-
     const isComplete = inst && inst.is_completed;
-    const li = document.createElement('div');
-    li.className = `task-instance ${isComplete ? 'completed' : ''}`;
-    li.innerHTML = `
-      <span>${rt.title} (${rt.frequency}) ${rt.is_must_do ? '[MUST DO]' : ''}</span>
+
+    const row = document.createElement('div');
+    row.className = `task-instance ${isComplete ? 'completed' : ''}`;
+    row.innerHTML = `
+      <span>
+        <i class="fas fa-check-square"></i>
+        ${rt.title} (${rt.frequency})
+        ${rt.is_must_do ? '<strong>[MUST]</strong>' : ''}
+      </span>
       <button onclick="toggleComplete('${rt.id}', '${today}', ${isComplete})">
         ${isComplete ? 'Undo' : 'Complete'}
       </button>
     `;
-    container.appendChild(li);
+    container.appendChild(row);
   }
 }
 
 async function toggleComplete(templateId, dateStr, currentlyComplete) {
-  // if instance exists, update. if not, create one
   if (!currentTaskUser) return;
   if (currentlyComplete) {
-    // set is_completed = false
     await supabaseTasks
       .from('task_instances')
       .update({ is_completed: false, completed_at: null })
       .eq('template_id', templateId)
       .eq('instance_date', dateStr);
   } else {
-    // either insert or update
     const { data: checkInst } = await supabaseTasks
       .from('task_instances')
       .select('*')
@@ -156,13 +147,10 @@ async function toggleComplete(templateId, dateStr, currentlyComplete) {
     }
   }
   loadTodayTasks();
-  // optional: re-run maintenance or partial check
 }
 
-// Weekly tasks
 async function loadWeekTasks() {
   if (!currentTaskUser) return;
-  // for demonstration, let's list all weekly tasks. we won't do partial sub-day checks
   const { data: tpls } = await supabaseTasks
     .from('task_templates')
     .select('*')
@@ -175,33 +163,25 @@ async function loadWeekTasks() {
     container.innerHTML = '<p>No weekly tasks</p>';
     return;
   }
-
-  const thisWeekStart = new Date();
-  thisWeekStart.setDate(thisWeekStart.getDate() - thisWeekStart.getDay()); // Sunday
-  // or Monday if you prefer. Just for example
-  const sundayStr = thisWeekStart.toISOString().split('T')[0];
-
   tpls.forEach(t => {
     const row = document.createElement('div');
     row.className = 'task-instance';
     row.innerHTML = `
-      <span>${t.title} (Need ${t.times_per_week} times/week) 
-        ${t.is_must_do ? '[MUST DO]' : ''}
+      <span><i class="fas fa-check-square"></i> ${t.title} (Need ${t.times_per_week}/week) 
+        ${t.is_must_do ? '<strong>[MUST]</strong>' : ''}
       </span>
-      <button onclick="markWeeklyComplete('${t.id}')">Mark Progress (Demo)</button>
+      <button onclick="markWeeklyComplete('${t.id}')">Mark Progress</button>
     `;
     container.appendChild(row);
   });
 }
 
 function markWeeklyComplete(templateId) {
-  alert('In a real system, you’d increment partial completion, track if it hits times_per_week, etc.');
-  // For demonstration only
+  alert('Demo: Track partial weekly progress. Real logic not fully implemented.');
 }
 
-// init
 (async function() {
   currentTaskUser = await fetchTaskUser();
-  loadTodayTasks();
-  loadWeekTasks();
+  await loadTodayTasks();
+  await loadWeekTasks();
 })();
