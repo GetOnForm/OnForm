@@ -50,44 +50,39 @@ async function loadFriends() {
 
     const { data: friendProfile } = await supabaseFriends
       .from('users')
-      .select('username, full_name, show_streak_to_friends, show_email_to_friends, show_phone_to_friends, email, phone_number, current_streak')
+      .select('username, full_name, show_streak_to_friends, show_email_to_friends, email, current_streak')
       .eq('id', friendId)
       .single();
-
     if (!friendProfile) continue;
 
     if (f.status === 'accepted') {
-      // Build friend list item
-      let itemHtml = `<strong>${friendProfile.full_name}</strong> (@${friendProfile.username}) `;
-      itemHtml += `<button onclick="toggleFriendInfo('${friendId}')">Show Info</button>`;
-      itemHtml += `<div id="friend-info-${friendId}" style="display:none;">`;
-
-      // If friend allows
+      let itemHtml = `<strong>${friendProfile.full_name}</strong> (@${friendProfile.username})`;
+      itemHtml += `<button class="toggle-info" onclick="toggleFriendInfo('${friendId}')"><i class="fas fa-caret-down"></i></button>`;
+      itemHtml += `<div id="friend-info-${friendId}" style="display:none; margin-top:8px;">`;
       if (friendProfile.show_streak_to_friends) {
-        itemHtml += `<p>Streak: ${friendProfile.current_streak}</p>`;
+        itemHtml += `<p><i class="fas fa-fire"></i> Streak: ${friendProfile.current_streak}</p>`;
       }
       if (friendProfile.show_email_to_friends) {
-        itemHtml += `<p>Email: ${friendProfile.email}</p>`;
-      }
-      if (friendProfile.show_phone_to_friends) {
-        itemHtml += `<p>Phone: ${friendProfile.phone_number || 'N/A'}</p>`;
+        itemHtml += `<p><i class="fas fa-envelope"></i> Email: ${friendProfile.email}</p>`;
       }
       itemHtml += `</div>`;
 
       list.innerHTML += `<li>${itemHtml}</li>`;
     } else if (!isRequester && f.status === 'pending') {
       pendingList.innerHTML += `<li>
-        ${friendProfile.full_name} (@${friendProfile.username}) wants to be friends 
-        <button onclick="acceptFriend('${f.user_id}', '${f.friend_id}')">Accept</button>
+        <strong>${friendProfile.full_name} (@${friendProfile.username})</strong> wants to be friends
+        <button onclick="acceptFriend('${f.user_id}', '${f.friend_id}')" class="btn-primary">
+          <i class="fas fa-check"></i>Accept
+        </button>
       </li>`;
     }
   }
 }
 
 function toggleFriendInfo(friendId) {
-  const infoDiv = document.getElementById(`friend-info-${friendId}`);
-  if (!infoDiv) return;
-  infoDiv.style.display = (infoDiv.style.display === 'none') ? 'block' : 'none';
+  const div = document.getElementById(`friend-info-${friendId}`);
+  if (!div) return;
+  div.style.display = (div.style.display === 'none') ? 'block' : 'none';
 }
 
 async function acceptFriend(uId, fId) {
@@ -104,7 +99,7 @@ async function acceptFriend(uId, fId) {
 
 document.getElementById('request-friend').addEventListener('click', async () => {
   if (!currentFriendUser) return;
-  const code = document.getElementById('friend-code').value;
+  const code = document.getElementById('friend-code').value.trim();
   if (!code) return;
 
   let { data: targetUser } = await supabaseFriends
@@ -113,7 +108,6 @@ document.getElementById('request-friend').addEventListener('click', async () => 
     .eq('friend_code', code)
     .single();
   if (!targetUser) return alert('User not found by that code');
-
   if (targetUser.id === currentFriendUser.id) return alert('Cannot friend yourself');
 
   let existing = await supabaseFriends
@@ -124,7 +118,6 @@ document.getElementById('request-friend').addEventListener('click', async () => 
     return alert('Already friends or pending request');
   }
 
-  // Insert both ways
   await supabaseFriends
     .from('friendships')
     .insert([
