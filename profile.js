@@ -39,24 +39,20 @@ function renderProfile() {
   document.getElementById('profile-name').innerText = `Name: ${currentProfileUser.full_name}`;
   document.getElementById('profile-email').innerText = `Email: ${currentProfileUser.email}`;
   document.getElementById('profile-username').innerText = `Username: ${currentProfileUser.username}`;
-  document.getElementById('profile-phone').innerText = `Phone: ${currentProfileUser.phone_number || 'N/A'}`;
   document.getElementById('profile-joined').innerText = currentProfileUser.joined_at
     ? new Date(currentProfileUser.joined_at).toLocaleDateString()
     : 'N/A';
 
   document.getElementById('edit-full-name').value = currentProfileUser.full_name;
   document.getElementById('edit-username').value = currentProfileUser.username;
-  document.getElementById('edit-phone').value = currentProfileUser.phone_number || '';
 
   const codeField = document.getElementById('edit-code');
   codeField.value = codeVisible
     ? (currentProfileUser.login_code || '')
     : '********';
 
-  // friend privacy
   document.getElementById('show-streak').checked = currentProfileUser.show_streak_to_friends;
   document.getElementById('show-email').checked = currentProfileUser.show_email_to_friends;
-  document.getElementById('show-phone').checked = currentProfileUser.show_phone_to_friends;
 }
 
 document.getElementById('toggle-code').addEventListener('click', () => {
@@ -90,25 +86,19 @@ document.getElementById('save-profile').addEventListener('click', async () => {
   if (!currentProfileUser) return;
   const newFullName = document.getElementById('edit-full-name').value;
   const newUsername = document.getElementById('edit-username').value;
-  const newPhone = document.getElementById('edit-phone').value;
-
   const showStreak = document.getElementById('show-streak').checked;
   const showEmail = document.getElementById('show-email').checked;
-  const showPhone = document.getElementById('show-phone').checked;
 
   const { data, error } = await supabaseProfile
     .from('users')
     .update({
       full_name: newFullName,
       username: newUsername,
-      phone_number: newPhone,
       show_streak_to_friends: showStreak,
-      show_email_to_friends: showEmail,
-      show_phone_to_friends: showPhone
+      show_email_to_friends: showEmail
     })
     .match({ id: currentProfileUser.id })
     .single();
-
   if (error) {
     alert('Error updating profile: ' + error.message);
   } else {
