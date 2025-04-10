@@ -24,6 +24,29 @@
     <button id="view-impersonate">Impersonate User</button>
   </section>
   <section id="admin-content"></section>
+
+  <section class="admin-tools">
+    <h2>Admin Actions</h2>
+    <div>
+      <label>Adjust a user's coins</label>
+      <input type="text" id="admin-username-coin" placeholder="Username" />
+      <input type="number" id="admin-coin-amount" placeholder="Amount (+/-)" />
+      <button id="admin-coin-button">Adjust Coins</button>
+    </div>
+
+    <div>
+      <label>Certify or Decertify a Group</label>
+      <input type="text" id="admin-group-name" placeholder="Group Name" />
+      <button id="admin-certify-button">Toggle Certification</button>
+    </div>
+
+    <div>
+      <label>Force Add Member to Group</label>
+      <input type="text" id="admin-add-username" placeholder="Username" />
+      <input type="text" id="admin-add-group" placeholder="Group Name" />
+      <button id="admin-add-member-button">Add Member</button>
+    </div>
+  </section>
 </main>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
